@@ -59,6 +59,12 @@ const Login = () => {
             Login
           </button>
         </div>
+        <div className='form-group'>
+          <button className='btn btn-primary' type='submit'>
+            Sign Up
+          </button>
+        </div>
+
       </form>
     </div>
   );
