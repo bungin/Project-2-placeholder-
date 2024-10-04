@@ -6,6 +6,13 @@ interface JwtPayload {
   username: string;
 }
 
+// Extend the Request type to include the `user` property
+declare module 'express-serve-static-core' {
+  interface Request {
+    user?: JwtPayload;
+  }
+}
+
 export const authenticateToken = (
   req: Request,
   res: Response,

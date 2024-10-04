@@ -1,5 +1,6 @@
 import type { Request, Response } from 'express';
 import { User } from '../models/index.js';
+import bcrypt from 'bcrypt';
 
 // GET /users - Get all users
 export const getUsers = async (_req: Request, res: Response) => {
@@ -33,8 +34,18 @@ export const getUserById = async (req: Request, res: Response) => {
 // POST /users - Create a new user
 export const createUser = async (req: Request, res: Response) => {
   const { username, email, password } = req.body;
+
+  // Added validation check 
+  if (username || email || password) {
+    return res.status(400).json({ message: 'Username, email, and password are required' });
+  }
   try {
-    const newUser = await User.create({ username, email, password });
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = await User.create({
+      username,
+      email,
+      password: hashedPassword,
+    });
     res.status(201).json(newUser);
   } catch (error: any) {
     res.status(400).json({ message: error.message });
@@ -49,7 +60,9 @@ export const updateUser = async (req: Request, res: Response) => {
     const user = await User.findByPk(id);
     if (user) {
       user.username = username;
-      user.password = password;
+      if (password) {
+        user.password = await bcrypt.hash(password, 10);
+      }
       await user.save();
       res.json(user);
     } else {

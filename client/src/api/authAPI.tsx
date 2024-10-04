@@ -3,7 +3,7 @@ import type { UserSignup } from '../interfaces/UserSign';
 
 const login = async (userInfo: UserLogin) => {
   try {
-    const response = await fetch('/auth/login', {
+    const response = await fetch('http://localhost:3001/auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ const login = async (userInfo: UserLogin) => {
 
 const signup = async (userInfo: UserSignup) => {
   try {
-    const response = await fetch('/auth/signup', {
+    const response = await fetch('http://localhost:3001/auth/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

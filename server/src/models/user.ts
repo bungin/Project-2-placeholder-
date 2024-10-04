@@ -6,6 +6,8 @@ interface UserAttributes {
   username: string;
   email: string;
   password: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }
 
 interface UserCreationAttributes extends Optional<UserAttributes, "id"> {}
@@ -29,7 +31,12 @@ export class User
     const saltRounds = 10;
     this.password = await bcrypt.hash(password, saltRounds);
   }
+  public async isPasswordValid(password: string): Promise<boolean> {
+    return bcrypt.compare(password, this.password);
+  }
 }
+
+
 
 export function UserFactory(sequelize: Sequelize): typeof User {
   User.init(
@@ -42,14 +49,30 @@ export function UserFactory(sequelize: Sequelize): typeof User {
       username: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          len: {
+            args: [3, 25],
+            msg: "Username must be between 3 and 25 characters long.",
+          },
+        }
       },
       email: {
         type: DataTypes.STRING, //TODO: need to add validation on these
         allowNull: false,
+        validate: {
+          isEmail: {
+            msg: "Must be a valid email address.",
+          },
+        },
       },
       password: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+          isEmail: {
+            msg: "Must be a valid email address.",
+          },
+        },
       },
     },
     {
