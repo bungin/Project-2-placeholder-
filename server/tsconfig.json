@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     /* Language Options */
-    "target": "ES5",                           /* Specify ECMAScript target version (ES5 for broad compatibility). */
+    "target": "ES2020",                           /* Specify ECMAScript target version (ES5 for broad compatibility). */
     "lib": ["dom", "dom.iterable", "esnext"],  /* Include useful built-in JavaScript libraries (DOM, ESNext). */
     
     /* JavaScript Support */
@@ -24,7 +24,7 @@
     "jsx": "react",                            /* Enable React JSX syntax support. */
 
     /* File Handling */
-    "noEmit": true,                            /* Do not emit compiled JavaScript files. */
+    "noEmit": false,                            /* Do not emit compiled JavaScript files. */
     
     /* Directories */
     "rootDir": "src",                          /* Specify the root folder of your source files. */
