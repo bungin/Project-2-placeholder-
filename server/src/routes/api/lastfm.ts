@@ -7,7 +7,7 @@ dotenv.config();
 
 const router = express.Router();
 // const app = express();
-// const PORT = process.env.PORT || 3000;
+// const PORT = process.env.PORT || 3000; does this make a new express app?
 
 // // Last.fm API root URL
 // Documentation: http://ws.audioscrobbler.com/2.0/
@@ -27,7 +27,7 @@ router.get("/auth", (req: Request, res: Response) => {
 router.get("/callback", async (req: Request, res: Response) => {
   const token = req.query.token as string;
   const apiKey = process.env.LASTFM_API_KEY;
-  const apiSecret = process.env.LASTGM_API_SECRET;
+  const apiSecret = process.env.LASTFM_API_SECRET;
 
   const apiSig = crypto
     .createHash("md5")
@@ -63,7 +63,7 @@ router.post("/search", async (req: Request, res: Response) => {
 });
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
