@@ -2,8 +2,11 @@
 SHOULD DELETE THIS BEFORE SUBMISSION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ======================================
 
-spotify gets music, genius gets lyrics
-genius takes song url of spotify url
+homepage: responsiveness on cards/media queries, remove placeholders, 
+    style logout/login buttons
+
+last.fm gets info, genius gets lyrics
+both take info from searchbar
 
 features:
 

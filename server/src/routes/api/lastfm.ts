@@ -6,8 +6,9 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const router = express.Router();
-// const app = express();
-// const PORT = process.env.PORT || 3000; does this make a new express app?
+
+const app = express();
+const PORT = process.env.PORT || 3001;
 
 // // Last.fm API root URL
 // Documentation: http://ws.audioscrobbler.com/2.0/
@@ -16,7 +17,8 @@ router.use(express.static("public"));
 router.use(express.json());
 
 let sessionKey: string | undefined;
-
+// dont think we need the callback auth since we wont be
+// dealing with lastfm users
 router.get("/auth", (req: Request, res: Response) => {
   const apiKey = process.env.LASTFM_API_KEY;
   const callbackURL = process.env.CALLBACK_URL;
@@ -56,17 +58,15 @@ router.post("/search", async (req: Request, res: Response) => {
         songName
       )}&api_key=${apiKey}&format=json`
     );
+
     res.json(response.data);
   } catch (error) {
     res.status(500).send("Error searching for songs");
   }
 });
 
-const app = express();
-const PORT = process.env.PORT || 3001;
-
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 
-export { router as lastfmRouter };
+export { router as lfmRouter };

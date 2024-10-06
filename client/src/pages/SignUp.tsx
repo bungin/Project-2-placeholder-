@@ -3,7 +3,12 @@ import Auth from '../utils/auth';
 import { signup } from '../api/authAPI';
 import type { UserSignup } from '../interfaces/UserSign';
 
-const SignUp = () => {
+interface SignUpProps {
+  onSuccess: () => void;  // A callback to notify the parent component (e.g., Home.tsx)
+  onToggle: () => void;  // A callback to toggle between Login and Sign-Up
+}
+
+const SignUp: React.FC<SignUpProps> = ({ onSuccess, onToggle }) => {
   const [signupData, setSignupData] = useState<UserSignup>({ username: '', email: '', password: '' });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -14,20 +19,28 @@ const SignUp = () => {
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     try {
-      const data = await signup(signupData);
-      Auth.login(data.token);
+      // Send the signup data to the backend
+      const response = await signup(signupData);
+
+      // Ensure the response is correctly formatted
+      if (response && response.token) {
+        console.log('Signup successful, received token:', response.token);
+        Auth.login(response.token);  // Log the user in with the received token
+        onSuccess();  // Notify the parent component
+      } else {
+        console.error('Unexpected response format:', response);
+      }
     } catch (err) {
-      console.error('Failed to sign up', err);
+      console.error('Failed to sign up:', err);
     }
   };
 
   return (
-    <form className='form signup-form' onSubmit={handleSubmit}>
+    <form className='formContainer' onSubmit={handleSubmit}>
       <h1>Create an Account</h1>
-      <div className='form-group'>
-        <label>Username</label>
+      <div>
+        <label>Username</label><br />
         <input
-          className='form-input'
           type='text'
           name='username'
           placeholder='Enter your username'
@@ -36,10 +49,9 @@ const SignUp = () => {
           required
         />
       </div>
-      <div className='form-group'>
-        <label>Email</label>
+      <div>
+        <label>Email</label><br />
         <input
-          className='form-input'
           type='email'
           name='email'
           placeholder='Enter your email'
@@ -48,10 +60,9 @@ const SignUp = () => {
           required
         />
       </div>
-      <div className='form-group'>
-        <label>Password</label>
+      <div>
+        <label>Password</label><br />
         <input
-          className='form-input'
           type='password'
           name='password'
           placeholder='Enter your password'
@@ -60,7 +71,14 @@ const SignUp = () => {
           required
         />
       </div>
-      <button type='submit' className='btn'>Sign Up</button>
+      <button type='submit' className='suBtn'>Sign Up</button>
+      <p>
+        Already have an account?{' '}
+        <span onClick={onToggle} 
+              className='link'>
+          Login here
+        </span>
+      </p>
     </form>
   );
 };
