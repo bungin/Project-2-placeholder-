@@ -15,8 +15,7 @@ const Home = () => {
   const [error, setError] = useState(false);
   const [loginCheck, setLoginCheck] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
-  const [songs, setSongs] = useState([]);
-  
+  const [songs, setSongs] = useState<any[]>([]); // Storing song data
 
   useEffect(() => {
     if (loginCheck) {
@@ -46,23 +45,19 @@ const Home = () => {
 
   const handleSongSearch = async (query: string) => {
     try {
-      const response = await axios.get(
-        `https://api.musixmatch.com/ws/1.1/track.search`,
-        {
-          params: {
-            q_track: query,
-            apikey: process.env.REACT_APP_MUSIXMATCH_API_KEY, // Use REACT_APP_ prefix
-          },
-        }
-      );
-      const songList = response.data.message.body.track_list;
+      // Request to your backend for song search
+      const response = await axios.get(`/api/songs`, {
+        params: {
+          q_track: query,
+        },
+      });
+      const songList = response.data.track_list;
       setSongs(songList);
     } catch (error) {
       console.error("Error fetching songs:", error);
       setError(true);
     }
   };
-  
 
   if (error) {
     return <ErrorPage />;
