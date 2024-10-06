@@ -2,6 +2,7 @@ import express from "express";
 import sequelize from "./config/connection"; // No .js extension needed
 import routes from "./routes/index"; // Existing routes
 import musixmatchRoutes from "./routes/musixmatch"; // Import the Musixmatch routes
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
