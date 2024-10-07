@@ -1,6 +1,6 @@
 import express from 'express';
-import sequelize from './config/connection'; // No .js extension needed
-import routes from './routes/index'; // Existing routes
+import sequelize from './config/connection.js'; // (lol no)No .js extension needed
+import routes from './routes/index.js'; // Existing routes
 
 const app = express();
 const PORT = process.env.PORT || 3001;

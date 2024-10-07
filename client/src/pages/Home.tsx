@@ -65,19 +65,18 @@ const Home = () => {
 
   return (
     <>
-      {!loginCheck ? (
-        <div className="login-notice">
-          <div>
-            <button onClick={() => setShowSignUp(!showSignUp)} className="toggle-btn">
-              {showSignUp ? "Login" : "Sign Up"}
-            </button>
-          </div>
+    {/* If not logged in, show Login or Sign-Up notice */}
+    {!loginCheck ? (
+        <div>
+        {/* Show either Login or Sign-Up based on state */}
           {showSignUp ? (
             <SignUp onSuccess={() => setLoginCheck(true)} onToggle={() => setShowSignUp(false)} />
           ) : (
             <>
-              <Login onSuccess={() => setLoginCheck(true)} onToggle={() => setShowSignUp(true)} />
-              <p>Please login or sign up to continue.</p>
+              <Login 
+                onSuccess={() => setLoginCheck(true)}
+                onToggle={() => setShowSignUp(true)}
+              />
             </>
           )}
         </div>
@@ -86,7 +85,9 @@ const Home = () => {
           <div>
             <SearchBar onSearch={handleSongSearch} />
           </div>
-          <div style={{ marginTop: "-20px" }}>
+          {/* UserList and SampleCard will be deleted once we start rendering. 
+              container/containerBG may need to be changed*/}
+          <div style={{ marginTop: "-20px" }}> 
             <UserList users={users} />
           </div>
           <div className="container">
