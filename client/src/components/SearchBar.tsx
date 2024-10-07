@@ -15,7 +15,7 @@ function SearchBar() {
             return;
         }
         try {
-            const response = await fetch('api/search', {
+            const response = await fetch('/api/music/search', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
