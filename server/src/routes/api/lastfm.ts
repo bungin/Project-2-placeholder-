@@ -1,20 +1,11 @@
 import express, { Request, Response } from "express";
 import axios from "axios";
 import crypto from "crypto";
-import dotenv from "dotenv";
-
-dotenv.config();
 
 const router = express.Router();
 
-const app = express();
-const PORT = process.env.PORT || 3001;
-
 // // Last.fm API root URL
 // Documentation: http://ws.audioscrobbler.com/2.0/
-
-router.use(express.static("public"));
-router.use(express.json());
 
 let sessionKey: string | undefined;
 // dont think we need the callback auth since we wont be
@@ -63,10 +54,6 @@ router.post("/search", async (req: Request, res: Response) => {
   } catch (error) {
     res.status(500).send("Error searching for songs");
   }
-});
-
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
 });
 
 export { router as lfmRouter };
