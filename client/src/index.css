@@ -362,14 +362,81 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   font-size: 16px;
   color: #e4cece;
-  background-image: url('./assets/backgrounds/bg1.png'), linear-gradient(#95393995, #620deab7) ;
-  background-repeat: no-repeat;
+  background-image: url('./assets/backgrounds/bg1.png'), url('./assets/backgrounds/bgStars2.png'), radial-gradient(circle, #95393995, #620deab7);
+  background-repeat: repeat-y, repeat;
   background-position: center;
+  background-size: auto, 80%;
+}
+
+.butt {
+  margin: 0px 20px 30px 20px ;
+}
+
+.suBtn {
+  background-color: #b69ff4;
+  border: 1px solid #620deab7;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 10px;
+  margin-left: auto;
+  margin: 10px 8px 0px 0px;
+  padding-bottom: 6px;
+}
+
+.inButtonForm {
+  background-color: #b69ff4;
+  border: 1px solid #620deab7;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 10px;
+  margin-left: 40px;
+  padding-bottom: 6px;
+}
+
+.inButton:hover {
+  background-color: #b69ff4c9;
+  color: #e4cece;
+}
+
+.outButton {
+  background-color: #620deab7;
+  color: #e4cece;
+  border: 1px solid #620deab7;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  padding-bottom: 7px;
+  margin: -3px 0px 10px 10px;
+}
+
+.outButton:hover {
+  background-color: #bd001fc9;
+  color: #e4cece;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.link {
+  color: #e4cece;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .mainCont {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  margin: 20px auto;
   background-image: linear-gradient(to right,#000000e0, #150f8006);
-
 }
 
 .container {
@@ -382,13 +449,22 @@ body {
 }
 
 .containerBG {
-  
   background-image: radial-gradient(circle, #95393995, #620deab7);
+}
+
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: fit-content;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.49);
 }
 
 .navBG {
   margin-top: -22px;
-  /* background-image: linear-gradient(#000000cd, #1e014c00); */
   background-image: linear-gradient(to right,#000000e0, #150f8006);
 }
 
@@ -396,9 +472,27 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0px auto -19px auto;
+  margin: 0px auto 0px auto;
   width: 750px;
   height: 50px;
   border: #000000e0;
   border-radius: 18%;
+}
+
+@media screen and (max-width: 450px) {
+  .searchBar {
+    width: 300px;
+  }
+}
+
+@media screen and (min-width: 450px) {
+  .searchBar {
+    width: 450px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .searchBar {
+    width: 300px;
+  }
 }
