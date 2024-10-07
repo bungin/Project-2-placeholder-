@@ -1,7 +1,7 @@
 import { useState, useEffect, useLayoutEffect } from "react";
 import type { UserData } from "../interfaces/UserData"; 
 import { retrieveUsers } from "../api/userAPI";
-import axios from "axios";
+import { retrieveSongs } from "../api/songsAPI";
 import SearchBar from "../components/SearchBar";
 import SampleCard from "../components/SampleCard";
 import auth from "../utils/auth";
@@ -46,12 +46,8 @@ const Home = () => {
   const handleSongSearch = async (query: string) => {
     try {
       // Request to your backend for song search
-      const response = await axios.get(`/api/songs`, {
-        params: {
-          q_track: query,
-        },
-      });
-      const songList = response.data.track_list;
+      const data = await retrieveSongs(query);
+      const songList = data.track_list;
       setSongs(songList);
     } catch (error) {
       console.error("Error fetching songs:", error);
