@@ -21,7 +21,6 @@ const SignUp: React.FC<SignUpProps> = ({ onSuccess, onToggle }) => {
     try {
       // Send the signup data to the backend
       const response = await signup(signupData);
-
       // Ensure the response is correctly formatted
       if (response && response.token) {
         console.log('Signup successful, received token:', response.token);
