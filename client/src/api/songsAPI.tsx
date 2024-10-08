@@ -21,4 +21,4 @@ const retrieveSongs = async (query:string) => {
   }
 };
 
-export { retrieveSongs };
+export { retrieveSongs};
