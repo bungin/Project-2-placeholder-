@@ -68,11 +68,6 @@ export function UserFactory(sequelize: Sequelize): typeof User {
       password: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          isEmail: {
-            msg: "Must be a valid email address.",
-          },
-        },
       },
     },
     {
