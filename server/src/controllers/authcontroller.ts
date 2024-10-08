@@ -20,7 +20,7 @@ export const login = async (req: Request, res: Response) => {
   }
 
   const secretKey = process.env.JWT_SECRET_KEY || '';
-                                                         // 1d = 1 day ,1s,1h,1m
+                                              // 1d = 1 day ,1s,1h,1m
   const token = jwt.sign({ id: user.id, username }, secretKey, { expiresIn: '1d' });
   return res.json({ token });
 };
