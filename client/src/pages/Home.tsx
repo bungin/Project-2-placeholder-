@@ -1,9 +1,9 @@
 import { useState, useEffect, useLayoutEffect } from "react";
 import type { UserData } from "../interfaces/UserData"; 
 import { retrieveUsers } from "../api/userAPI";
-import { retrieveSongs } from "../api/songsAPI";
+
 import SearchBar from "../components/SearchBar";
-import SampleCard from "../components/SampleCard";
+// import SampleCard from "../components/SampleCard";
 import auth from "../utils/auth";
 import Login from "./Login";
 import SignUp from "./SignUp";
@@ -15,7 +15,7 @@ const Home = () => {
   const [error, setError] = useState(false);
   const [loginCheck, setLoginCheck] = useState(false);
   const [showSignUp, setShowSignUp] = useState(false);
-  const [songs, setSongs] = useState<any[]>([]); // Storing song data
+  // const [songs, setSongs] = useState<any[]>([]); // Storing song data
 
   useEffect(() => {
     if (loginCheck) {
@@ -43,17 +43,7 @@ const Home = () => {
     }
   };
 
-  const handleSongSearch = async (query: string) => {
-    try {
-      // Request to your backend for song search
-      const data = await retrieveSongs(query);
-      const songList = data.track_list;
-      setSongs(songList);
-    } catch (error) {
-      console.error("Error fetching songs:", error);
-      setError(true);
-    }
-  };
+
 
   if (error) {
     return <ErrorPage />;
@@ -79,20 +69,20 @@ const Home = () => {
       ) : (
         <>
           <div>
-            <SearchBar onSearch={handleSongSearch} />
+            <SearchBar />
           </div>
           {/* UserList(?) and SampleCard will be deleted once we start rendering. 
               container/containerBG may need to be changed*/}
           <div style={{ marginTop: "-20px" }}> 
             <UserList users={users} />
           </div>
-          <div className="container">
+          {/* <div className="container">
             {songs.map((song: any, index: number) => (
               <div key={index} className="container containerBG" style={{ margin: "0 10px" }}>
                 <SampleCard title={song.track.track_name} artist={song.track.artist_name} />
               </div>
             ))}
-          </div>
+          </div> */}
         </>
       )}
     </>
