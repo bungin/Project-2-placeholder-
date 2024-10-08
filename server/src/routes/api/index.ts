@@ -1,12 +1,13 @@
 import { Router } from 'express';
-import { userRouter } from './user-routes.js';
-// import { carsRouter } from './cars-routers.js'; example
+import { usersRouter } from './user-routes.js';
+import songsRouter from  './song-routes.js';
+import songLyricsRouter from './songlyric-routes.js';
+import authRouter from "./auth-routes.js"; 
 
 const router = Router();
 
-
-// /api/users
-router.use('/users', userRouter);
-// router.use('/cars', carsRouter); example of new routes
+router.use('/users', usersRouter);
+router.use('/songs', songsRouter);
+router.use('/lyrics', songLyricsRouter);
 
 export default router;
