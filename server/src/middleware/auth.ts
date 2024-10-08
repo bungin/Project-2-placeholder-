@@ -16,7 +16,7 @@ export const authenticateToken = (
   if (authHeader) {
     const token = authHeader.split(' ')[1];
     const secretKey = process.env.JWT_SECRET_KEY || '';
-
+    console.log("hitting auth middleware");
 
     jwt.verify(token, secretKey, (err, user) => {
       if (err) {

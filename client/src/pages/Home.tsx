@@ -1,17 +1,21 @@
 import { useState, useEffect, useLayoutEffect } from "react";
+import type { UserData } from "../interfaces/UserData"; 
 import { retrieveUsers } from "../api/userAPI";
-import type { UserData } from "../interfaces/UserData";
+
+import SearchBar from "../components/SearchBar";
+// import SampleCard from "../components/SampleCard";
+import auth from "../utils/auth";
+import Login from "./Login";
+import SignUp from "./SignUp";
 import ErrorPage from "./ErrorPage";
 import UserList from "../components/Users";
-import SearchBar from "../components/SearchBar";
-import auth from "../utils/auth";
-
-import SampleCard from "../components/SampleCard";
 
 const Home = () => {
   const [users, setUsers] = useState<UserData[]>([]);
   const [error, setError] = useState(false);
   const [loginCheck, setLoginCheck] = useState(false);
+  const [showSignUp, setShowSignUp] = useState(false);
+  // const [songs, setSongs] = useState<any[]>([]); // Storing song data
 
   useEffect(() => {
     if (loginCheck) {
@@ -34,10 +38,12 @@ const Home = () => {
       const data = await retrieveUsers();
       setUsers(data);
     } catch (err) {
-      console.error("Failed to retrieve tickets:", err);
+      console.error("Failed to retrieve users:", err);
       setError(true);
     }
   };
+
+
 
   if (error) {
     return <ErrorPage />;
@@ -45,36 +51,38 @@ const Home = () => {
 
   return (
     <>
-      {!loginCheck ? (
-        <div className="login-notice">
-          <h1>Please Login</h1>
+    {/* If not logged in, show Login or Sign-Up notice */}
+    {!loginCheck ? (
+        <div>
+        {/* Show either Login or Sign-Up based on state */}
+          {showSignUp ? (
+            <SignUp onSuccess={() => setLoginCheck(true)} onToggle={() => setShowSignUp(false)} />
+          ) : (
+            <>
+              <Login 
+                onSuccess={() => setLoginCheck(true)}
+                onToggle={() => setShowSignUp(true)}
+              />
+            </>
+          )}
         </div>
       ) : (
         <>
           <div>
-            <SearchBar></SearchBar>
+            <SearchBar />
           </div>
-          <div style={{ marginTop: "-20px" }}>
+          {/* UserList(?) and SampleCard will be deleted once we start rendering. 
+              container/containerBG may need to be changed*/}
+          <div style={{ marginTop: "-20px" }}> 
             <UserList users={users} />
           </div>
-          <div className="container">
-            <div className="container containerBG"
-                 style={{margin:'0 10px'}}>
-              <SampleCard />
-            </div>
-            <div className="container containerBG"
-                 style={{margin:'0 10px'}}>
-              <SampleCard />
-            </div>
-            <div className="container containerBG"
-                 style={{margin:'0 10px'}}>
-              <SampleCard />
-            </div>
-            <div className="container containerBG"
-                 style={{margin:'0 10px'}}>
-              <SampleCard />
-            </div>
-          </div>
+          {/* <div className="container">
+            {songs.map((song: any, index: number) => (
+              <div key={index} className="container containerBG" style={{ margin: "0 10px" }}>
+                <SampleCard title={song.track.track_name} artist={song.track.artist_name} />
+              </div>
+            ))}
+          </div> */}
         </>
       )}
     </>
