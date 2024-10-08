@@ -6,6 +6,13 @@ interface JwtPayload {
   username: string;
 }
 
+// Extend the Request type to include the `user` property
+declare module 'express-serve-static-core' {
+  interface Request {
+    user?: JwtPayload;
+  }
+}
+
 export const authenticateToken = (
   req: Request,
   res: Response,
@@ -16,7 +23,7 @@ export const authenticateToken = (
   if (authHeader) {
     const token = authHeader.split(' ')[1];
     const secretKey = process.env.JWT_SECRET_KEY || '';
-
+    console.log("hitting auth middleware");
 
     jwt.verify(token, secretKey, (err, user) => {
       if (err) {

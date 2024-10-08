@@ -35,7 +35,7 @@ const Login: React.FC<LoginProps> = ({ onSuccess, onToggle }) => {
       <div >
         <form onSubmit={handleSubmit}>
           <h1 className="center">Login</h1>
-          <div style={{marginLeft:'40px'}}>
+          <div style={{ marginLeft: '40px' }}>
             <label>Username</label>
             <br />
             <input
@@ -45,7 +45,7 @@ const Login: React.FC<LoginProps> = ({ onSuccess, onToggle }) => {
               onChange={handleChange}
             />
           </div>
-          <div style={{marginLeft:'40px'}}>
+          <div style={{ marginLeft: '40px' }}>
             <label>Password</label>
             <br />
             <input

@@ -4,7 +4,7 @@ import Auth from '../utils/auth';
 
 const login = async (userInfo: UserLogin) => {
   try {
-    const response = await fetch('/auth/login', {
+    const response = await fetch('auth/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
