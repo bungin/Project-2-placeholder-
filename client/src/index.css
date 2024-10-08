@@ -363,7 +363,8 @@ body {
   font-size: 16px;
   color: #e4cece;
   background-image: url('./assets/backgrounds/bg1.png'), url('./assets/backgrounds/bgStars2.png'), radial-gradient(circle, #95393995, #620deab7);
-  background-repeat: repeat-y, repeat;
+  -webkit-box-reflect: right;
+  background-repeat: rounnd;
   background-position: center;
   background-size: auto, 80%;
 }
@@ -434,8 +435,9 @@ body {
 .mainCont {
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  margin: 20px auto;
+  padding-left: 10px;
+  padding-top: px;
+  margin-bottom:  auto;
   background-image: linear-gradient(to right,#000000e0, #150f8006);
 }
 
@@ -468,16 +470,62 @@ body {
   background-image: linear-gradient(to right,#000000e0, #150f8006);
 }
 
-.searchBar {
+/* Centering elements on the page */
+.search-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  margin: 0px auto 0px auto;
-  width: 750px;
-  height: 50px;
-  border: #000000e0;
-  border-radius: 18%;
+  justify-content: center;
+  
+  background-image: linear-gradient(to right,#000000e0, #150f8006);
+  padding: 20px;
 }
+
+/* Search bar stays in place */
+.search-bar-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.searchBar {
+  width: 300px;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+/* Center the search button */
+.search-button {
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+/* Results section for Last FM and Musixmatch */
+.results-section {
+  text-align: center;
+  margin: 20px 0;
+  width: 100%;
+  max-width: 500px;
+}
+
+.results-section h1 {
+  margin-bottom: 15px;
+}
+
+.results-section div {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 5px;
+}
+
 
 @media screen and (max-width: 450px) {
   .searchBar {
