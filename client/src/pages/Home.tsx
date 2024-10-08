@@ -75,7 +75,7 @@ const Home = () => {
           <div style={{ flex: 1, marginRight: "20px", overflowY: "auto" }}>
             <UserList users={users} />
           </div>
-          <div style={{ width: "300px", marginLeft: "20px", overflowY: "auto", borderLeft: "1px solid #ccc" }}>
+          <div style={{ width: "300px", marginLeft: "20px", overflowY: "auto"}}>
             <SearchBar onSearch={handleSongSearch} />
             <ul style={{ listStyleType: "none", padding: 0, margin: 0 }}>
               {songs.map((song: any, index: number) => (
