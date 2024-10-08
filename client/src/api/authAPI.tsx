@@ -1,6 +1,5 @@
 import type { UserLogin,} from '../interfaces/UserLogin';
 import type { UserSignup } from '../interfaces/UserSign';
-import Auth from '../utils/auth';
 
 const login = async (userInfo: UserLogin) => {
   try {
@@ -27,14 +26,15 @@ const login = async (userInfo: UserLogin) => {
 
 const signup = async (userInfo: UserSignup) => {
   try {
-    const response = await fetch('/api/users', {
+
+    const response = await fetch('api/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${Auth.getToken()}`,
       },
-      body: JSON.stringify(userInfo),
+      body: JSON.stringify(userInfo), 
     });
+
 
     const data = await response.json();
 

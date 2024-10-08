@@ -28,8 +28,7 @@ export class User
 
   // Hash the password before saving the user
   public async setPassword(password: string) {
-    const saltRounds = 10;
-    this.password = await bcrypt.hash(password, saltRounds);
+    console.log('hashPass:',password)
   }
   public async isPasswordValid(password: string): Promise<boolean> {
     return bcrypt.compare(password, this.password);
@@ -57,7 +56,7 @@ export function UserFactory(sequelize: Sequelize): typeof User {
         }
       },
       email: {
-        type: DataTypes.STRING, //TODO: need to add validation on these
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           isEmail: {

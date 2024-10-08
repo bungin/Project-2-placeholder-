@@ -21,13 +21,6 @@ export const login = async (req: Request, res: Response) => {
       return res.status(401).json({ message: 'Authentication failed. User not found.' });
     }
 
-    // Log user details for debugging (excluding password for security)
-    console.log(`User found: ${user.username}`);
-    console.log(`Stored password hash for user: ${user.password}`);
-
-    // Log the original plaintext password before comparison
-    console.log(`Plaintext password to compare: ${password}`);
-
     // Compare the provided password with the stored hash
     const passwordIsValid = await bcrypt.compare(password, user.password);
     console.log(`Password comparison result for ${username}: ${passwordIsValid}`);
@@ -67,16 +60,11 @@ export const signup = async (req: Request, res: Response) => {
       return res.status(400).json({ message: 'User with this username or email already exists' });
     }
 
-    // Hash the password and log it for debugging
-    console.log("Hashing password...");
-    const hashedPassword = await bcrypt.hash(password, 10);
-    console.log(`Hashed password: ${hashedPassword}`);
-
     // Create a new user in the database
     const newUser = await User.create({
       username,
       email,
-      password: hashedPassword,
+      password: password,
     });
     console.log(`New user created: ${newUser.username}`);
 
