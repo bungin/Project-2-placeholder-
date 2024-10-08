@@ -1,3 +1,4 @@
+
 import { useState } from 'react';
 import '../index.css';
 import Auth from '../utils/auth';
@@ -68,3 +69,4 @@ function SearchBar() {
     );
 }
 export default SearchBar;
+
