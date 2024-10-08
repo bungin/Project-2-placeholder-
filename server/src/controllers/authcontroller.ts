@@ -6,21 +6,22 @@ import bcrypt from 'bcrypt';
 
 export const login = async (req: Request, res: Response) => {
   const { username, password } = req.body;
-
+  console.log('loging called');
   const user = await User.findOne({
     where: { username },
   });
+  console.log(user);
   if (!user) {
     return res.status(401).json({ message: 'Authentication failed' });
   }
-
+  console.log(user.password);
   const passwordIsValid = await bcrypt.compare(password, user.password);
   if (!passwordIsValid) {
     return res.status(401).json({ message: 'Authentication failed' });
   }
 
   const secretKey = process.env.JWT_SECRET_KEY || '';
-  // 1d = 1 day ,1s,1h,1m
+
   const token = jwt.sign({ id: user.id, username }, secretKey, { expiresIn: '1d' });
   return res.json({ token });
 };
