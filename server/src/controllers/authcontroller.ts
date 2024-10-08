@@ -32,7 +32,7 @@ export const signup = async (req: Request, res: Response) => {
   const { username, email, password } = req.body;
 
   try {
-    // Remove uniqueness checks since your project does not require unique constraints
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = await User.create({
