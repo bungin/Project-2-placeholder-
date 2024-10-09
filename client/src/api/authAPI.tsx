@@ -26,13 +26,15 @@ const login = async (userInfo: UserLogin) => {
 
 const signup = async (userInfo: UserSignup) => {
   try {
-    const response = await fetch('/auth/signup', {
+
+    const response = await fetch('api/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(userInfo),
+      body: JSON.stringify(userInfo), 
     });
+
 
     const data = await response.json();
 

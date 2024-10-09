@@ -21,16 +21,18 @@ const SignUp: React.FC<SignUpProps> = ({ onSuccess, onToggle }) => {
     try {
       // Send the signup data to the backend
       const response = await signup(signupData);
-
+      console.log(response,'1');
       // Ensure the response is correctly formatted
       if (response && response.token) {
         console.log('Signup successful, received token:', response.token);
         Auth.login(response.token);  // Log the user in with the received token
         onSuccess();  // Notify the parent component
       } else {
+        console.log(response,'2');
         console.error('Unexpected response format:', response);
       }
     } catch (err) {
+      
       console.error('Failed to sign up:', err);
     }
   };
