@@ -362,10 +362,37 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   font-size: 16px;
   color: #e4cece;
-  background-image: url('./assets/backgrounds/bg1.png'), url('./assets/backgrounds/bgStars2.png'), radial-gradient(circle, #95393995, #620deab7);
+  background-image: url('./assets/backgrounds/bg1.png');
   background-repeat: repeat-y, repeat;
   background-position: center;
   background-size: auto, 80%;
+}
+
+/* Results section for Last FM and Musixmatch */
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(to right,#000000e0, #150f8006);
+  padding: 20px;
+}
+
+.results-section {
+  text-align: center;
+  margin: 20px 0;
+  width: 100%;
+  max-width: 500px;
+}
+
+.results-section h1 {
+  margin-bottom: 15px;
+}
+
+.results-section div {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 5px;
 }
 
 .butt {

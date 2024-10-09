@@ -63,7 +63,7 @@ function SearchBar() {
         }
     };
     return (
-        <div style={{ backgroundImage: 'linear-gradient(to right,#000000e0, #150f8006)', padding: '20px' }}>
+        <div className='search-container' style={{ backgroundImage: 'linear-gradient(to right,#000000e0, #150f8006)', padding: '20px' }}>
             <input
                 className='searchBar'
                 type="text"
@@ -72,9 +72,9 @@ function SearchBar() {
                 onChange={handleChange}
                 onKeyUp={handleKeyPress} // Add the keypress event handler here
             />
-            <button onClick={handleSearch}>Search</button>
             {error && <div style={{ color: 'red' }}>{error}</div>}
-            <div>
+            <div className='results-section'>
+                <h1 className=''>LastFM</h1>
                 {results.length > 0 ? (
                     results.map((track, index) => (
                         <div key={index}>
@@ -86,8 +86,8 @@ function SearchBar() {
                     <div>No results found.</div>
                 )}
             </div>
-            <div>
-                <h1>musix</h1>
+            <div className='results-section'>
+                <h1>Musix</h1>
                 {musixResults.length > 0 ? (
                     musixResults.map(({track}) => (
                         <div key={track.track_id}>
