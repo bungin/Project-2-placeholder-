@@ -20,7 +20,7 @@ const SignUp: React.FC<SignUpProps> = ({ onSuccess, onToggle }) => {
     setSignupData({ ...signupData, [name]: value });
   };
 
-  const handleSubmit = async (e: FormEvent) => {
+  const handleSubmit = async () => {
     try {
       // Send the signup data to the backend
       const response = await signup(signupData);
