@@ -365,7 +365,8 @@ body {
   background-image: url('./assets/backgrounds/bg1.png'), url('./assets/backgrounds/bgStars2.png');
   background-repeat: repeat-y, repeat;
   background-position: center;
-  background-size: auto, 80%;
+  background-size: 50%, 80%;
+  background-attachment:fixed;
 }
 
 /* Results section for Last FM and Musixmatch */
@@ -506,9 +507,27 @@ body {
   border-radius: 18%;
 }
 
+@media screen and (max-width: 1200px) {
+  body {
+    background-size: 60%;
+  }
+  
+}
+
+@media screen and (max-width: 800px) {
+  body {
+    background-size: 100%;
+  }
+  
+}
+
 @media screen and (max-width: 450px) {
   .searchBar {
     width: 300px;
+  }
+
+  body{
+    background-size: 100%;
   }
 }
 
@@ -518,8 +537,3 @@ body {
   }
 }
 
-@media screen and (max-width: 450px) {
-  .searchBar {
-    width: 300px;
-  }
-}
