@@ -1,16 +1,14 @@
-import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import './index.css';
-
-import App from './App.tsx';
-
-import ErrorPage from './pages/ErrorPage.tsx';
-import Home from './pages/Home.tsx';
-import LoginWrapper from './components/LoginWrapper.tsx';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ReactDOM from "react-dom/client";
+import App from "./App.tsx";
+import ErrorPage from "./pages/ErrorPage.tsx";
+import Home from "./pages/Home.tsx";
+import LoginWrapper from "./components/LoginWrapper.tsx";
+import "./index.css";
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
@@ -19,14 +17,14 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/login',
+        path: "/login",
         element: <LoginWrapper />,
       },
     ],
   },
 ]);
 
-const rootElement = document.getElementById('root');
+const rootElement = document.getElementById("root");
 if (rootElement) {
   ReactDOM.createRoot(rootElement).render(<RouterProvider router={router} />);
 }

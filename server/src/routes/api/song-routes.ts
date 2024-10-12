@@ -8,10 +8,10 @@ const router = express.Router();
 
 router.get("", async (req: Request, res: Response) => {
   const query = req.query.q_track;
-  
+
   try {
     const response = await axios.get(
-      `https://api.musixmatch.com/ws/1.1/track.search`, 
+      `https://api.musixmatch.com/ws/1.1/track.search`,
       {
         params: {
           q_track: query,

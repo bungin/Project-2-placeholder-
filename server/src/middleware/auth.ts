@@ -18,7 +18,7 @@ export const authenticateToken = (
   res: Response,
   next: NextFunction
 ) => {
-  // Skip authentication for the signup route
+  // Skipping authentication for the signup route
   if (req.path === "/users" && req.method === "POST") {
     return next(); // Skip authentication for this route
   }
@@ -34,7 +34,6 @@ export const authenticateToken = (
       if (err) {
         return res.sendStatus(401); // Unauthorized
       }
-      // whatever is in the token = payload. in this case user creds.
       req.user = user as JwtPayload;
       return next();
     });

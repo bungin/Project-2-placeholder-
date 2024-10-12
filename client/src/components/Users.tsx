@@ -1,5 +1,5 @@
 import React from "react";
-import '../index.css';
+import "../index.css";
 import type { UserData } from "../interfaces/UserData";
 import auth from "../utils/auth";
 

@@ -8,8 +8,6 @@ const router = express.Router();
 // Documentation: http://ws.audioscrobbler.com/2.0/
 
 let sessionKey: string | undefined;
-// dont think we need the callback auth since we wont be
-// dealing with lastfm users
 router.get("/auth", (req: Request, res: Response) => {
   const apiKey = process.env.LASTFM_API_KEY;
   const callbackURL = process.env.CALLBACK_URL;

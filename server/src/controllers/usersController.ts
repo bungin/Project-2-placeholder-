@@ -1,12 +1,12 @@
-import type { Request, Response } from 'express';
-import { User } from '../models/index.js';
-import bcrypt from 'bcrypt';
+import type { Request, Response } from "express";
+import { User } from "../models/index.js";
+import bcrypt from "bcrypt";
 
 // GET /users - Get all users
 export const getUsers = async (_req: Request, res: Response) => {
   try {
     const users = await User.findAll({
-      attributes: { exclude: ['password'] }, // Exclude password in response
+      attributes: { exclude: ["password"] }, // Exclude password in response
     });
     console.log("Fetched all users successfully");
     res.json(users);
@@ -21,14 +21,14 @@ export const getUserById = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
     const user = await User.findByPk(id, {
-      attributes: { exclude: ['password'] }, // Exclude password in response
+      attributes: { exclude: ["password"] }, // Exclude password in response
     });
     if (user) {
       console.log(`Fetched user with ID: ${id}`);
       res.json(user);
     } else {
       console.log(`User not found with ID: ${id}`);
-      res.status(404).json({ message: 'User not found' });
+      res.status(404).json({ message: "User not found" });
     }
   } catch (error: any) {
     console.error("Error fetching user by ID:", error);
@@ -42,8 +42,12 @@ export const createUser = async (req: Request, res: Response) => {
 
   // Corrected validation check for required fields
   if (!username || !email || !password) {
-    console.log("Validation failed: Username, email, and password are required");
-    return res.status(400).json({ message: 'Username, email, and password are required' });
+    console.log(
+      "Validation failed: Username, email, and password are required"
+    );
+    return res
+      .status(400)
+      .json({ message: "Username, email, and password are required" });
   }
 
   try {
@@ -74,7 +78,7 @@ export const createUser = async (req: Request, res: Response) => {
       email: newUser.email,
     });
   } catch (error: any) {
-    console.error('Error during user creation:', error);
+    console.error("Error during user creation:", error);
     return res.status(400).json({ message: error.message });
   }
 };
@@ -85,7 +89,10 @@ export const updateUser = async (req: Request, res: Response) => {
   const { username, password } = req.body;
 
   // Log the request details for debugging
-  console.log(`Update request received for user ID: ${id}`, { username, password });
+  console.log(`Update request received for user ID: ${id}`, {
+    username,
+    password,
+  });
 
   try {
     const user = await User.findByPk(id);
@@ -103,10 +110,10 @@ export const updateUser = async (req: Request, res: Response) => {
       await user.save();
 
       console.log(`User updated successfully: ${username}`);
-      res.json({ message: 'User updated successfully', user });
+      res.json({ message: "User updated successfully", user });
     } else {
       console.log(`User not found with ID: ${id}`);
-      res.status(404).json({ message: 'User not found' });
+      res.status(404).json({ message: "User not found" });
     }
   } catch (error: any) {
     console.error("Error updating user:", error);
@@ -126,10 +133,10 @@ export const deleteUser = async (req: Request, res: Response) => {
     if (user) {
       await user.destroy();
       console.log(`User deleted successfully with ID: ${id}`);
-      res.json({ message: 'User deleted successfully' });
+      res.json({ message: "User deleted successfully" });
     } else {
       console.log(`User not found with ID: ${id}`);
-      res.status(404).json({ message: 'User not found' });
+      res.status(404).json({ message: "User not found" });
     }
   } catch (error: any) {
     console.error("Error deleting user:", error);
