@@ -1,8 +1,8 @@
 // Importing specific types and functions from the 'jwt-decode' library.
 // JwtPayload: A type definition representing the structure of a JSON Web Token payload.
 // jwtDecode: A function used to decode a JSON Web Token (JWT) and extract its payload.
-import { type JwtPayload, jwtDecode } from 'jwt-decode';
-import type { UserData } from '../interfaces/UserData';
+import { type JwtPayload, jwtDecode } from "jwt-decode";
+import type { UserData } from "../interfaces/UserData";
 
 class AuthService {
   getProfile() {
@@ -33,20 +33,19 @@ class AuthService {
   }
 
   getToken(): string {
-    const loggedUser = localStorage.getItem('id_token') || '';
+    const loggedUser = localStorage.getItem("id_token") || "";
     return loggedUser;
   }
 
   login(idToken: string) {
-    localStorage.setItem('id_token', idToken);
-    window.location.assign('/');
+    localStorage.setItem("id_token", idToken);
+    window.location.assign("/");
   }
 
   logout() {
-    localStorage.removeItem('id_token');
-    window.location.assign('/');
+    localStorage.removeItem("id_token");
+    window.location.assign("/");
   }
-
 }
 
 export default new AuthService();

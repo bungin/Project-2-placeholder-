@@ -1,15 +1,19 @@
-import { useState, type FormEvent, type ChangeEvent } from 'react';
-import Auth from '../utils/auth';
-import { signup } from '../api/authAPI';
-import type { UserSignup } from '../interfaces/UserSign';
+import { useState, type FormEvent, type ChangeEvent } from "react";
+import Auth from "../utils/auth";
+import { signup } from "../api/authAPI";
+import type { UserSignup } from "../interfaces/UserSign";
 
 interface SignUpProps {
-  onSuccess: () => void;  // A callback to notify the parent component (e.g., Home.tsx)
-  onToggle: () => void;  // A callback to toggle between Login and Sign-Up
+  onSuccess: () => void; // A callback to notify the parent component (e.g., Home.tsx)
+  onToggle: () => void; // A callback to toggle between Login and Sign-Up
 }
 
 const SignUp: React.FC<SignUpProps> = ({ onSuccess, onToggle }) => {
-  const [signupData, setSignupData] = useState<UserSignup>({ username: '', email: '', password: '' });
+  const [signupData, setSignupData] = useState<UserSignup>({
+    username: "",
+    email: "",
+    password: "",
+  });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -21,63 +25,66 @@ const SignUp: React.FC<SignUpProps> = ({ onSuccess, onToggle }) => {
     try {
       // Send the signup data to the backend
       const response = await signup(signupData);
-      console.log(response,'1');
+      console.log(response, "1");
       // Ensure the response is correctly formatted
       if (response && response.token) {
-        console.log('Signup successful, received token:', response.token);
-        Auth.login(response.token);  // Log the user in with the received token
-        onSuccess();  // Notify the parent component
+        console.log("Signup successful, received token:", response.token);
+        Auth.login(response.token); // Log the user in with the received token
+        onSuccess(); // Notify the parent component
       } else {
-        console.log(response,'2');
-        console.error('Unexpected response format:', response);
+        console.log(response, "2");
+        console.error("Unexpected response format:", response);
       }
     } catch (err) {
-      
-      console.error('Failed to sign up:', err);
+      console.error("Failed to sign up:", err);
     }
   };
 
   return (
-    <form className='formContainer' onSubmit={handleSubmit}>
+    <form className="formContainer" onSubmit={handleSubmit}>
       <h1>Create an Account</h1>
       <div>
-        <label>Username</label><br />
+        <label>Username</label>
+        <br />
         <input
-          type='text'
-          name='username'
-          placeholder='Enter your username'
-          value={signupData.username ?? ''}
+          type="text"
+          name="username"
+          placeholder="Enter your username"
+          value={signupData.username ?? ""}
           onChange={handleChange}
           required
         />
       </div>
       <div>
-        <label>Email</label><br />
+        <label>Email</label>
+        <br />
         <input
-          type='email'
-          name='email'
-          placeholder='Enter your email'
-          value={signupData.email ?? ''}
+          type="email"
+          name="email"
+          placeholder="Enter your email"
+          value={signupData.email ?? ""}
           onChange={handleChange}
           required
         />
       </div>
       <div>
-        <label>Password</label><br />
+        <label>Password</label>
+        <br />
         <input
-          type='password'
-          name='password'
-          placeholder='Enter your password'
-          value={signupData.password ?? ''}
+          type="password"
+          name="password"
+          placeholder="Enter your password"
+          value={signupData.password ?? ""}
           onChange={handleChange}
           required
         />
       </div>
-      <button type='submit' className='suBtn'>Sign Up</button>
+      <button type="submit" className="suBtn">
+        Sign Up
+      </button>
       <p>
-        Already have an account?{' '}
-        <span onClick={onToggle} 
-              className='link'>
+        Already have an account?{" "}
+        <span onClick={onToggle} className="link">
           Login here
         </span>
       </p>
