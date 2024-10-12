@@ -1,5 +1,4 @@
-import { useState, type FormEvent, type ChangeEvent } from "react";
-import Auth from "../utils/auth";
+import { useState, type ChangeEvent } from "react";
 import { signup } from "../api/authAPI";
 import type { UserSignup } from "../interfaces/UserSign";
 
