@@ -21,7 +21,6 @@ const SignUp: React.FC<SignUpProps> = ({ onSuccess, onToggle }) => {
   };
 
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
     try {
       // Send the signup data to the backend
       const response = await signup(signupData);
@@ -29,8 +28,12 @@ const SignUp: React.FC<SignUpProps> = ({ onSuccess, onToggle }) => {
       // Ensure the response is correctly formatted
       if (response && response.token) {
         console.log("Signup successful, received token:", response.token);
-        Auth.login(response.token); // Log the user in with the received token
         onSuccess(); // Notify the parent component
+        setSignupData({
+          username: "",
+          email: "",
+          password: "",
+        });
       } else {
         console.log(response, "2");
         console.error("Unexpected response format:", response);
